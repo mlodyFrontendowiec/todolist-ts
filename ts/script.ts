@@ -13,7 +13,6 @@ class ToDoList {
     this.input = document.querySelector(".input-addTask") as HTMLInputElement;
     this.handleForm();
     this.createTemplateInHTML();
-    const buttons = document.querySelectorAll<HTMLElement>("button");
   }
   addTask(id: number, title: string, date: Date) {
     this.tasks.push({ id, title, date });
@@ -44,7 +43,7 @@ class ToDoList {
         button.innerText = "Remove";
         button.setAttribute("data-id", String(item.id));
         div.appendChild(button);
-        button.addEventListener("click", (e) => {
+        button.addEventListener("click", () => {
           this.removeTask(item.id);
           button.parentNode?.parentNode?.removeChild(div);
         });
