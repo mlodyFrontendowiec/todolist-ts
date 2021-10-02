@@ -1,0 +1,16 @@
+* {
+  font-family: sans-serif;
+}
+h1 {
+  text-align: center;
+}
+.form-addTask {
+  text-align: center;
+}
+div {
+  border: 2px solid black;
+  padding: 6px 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
