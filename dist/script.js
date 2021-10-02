@@ -21,7 +21,7 @@ var ToDoList = /** @class */ (function () {
         var _this = this;
         this.form.addEventListener("submit", function (e) {
             e.preventDefault();
-            _this.addTask(Math.floor(Math.random() * 100000), _this.input.value, Date.now());
+            _this.addTask(Math.floor(Math.random() * 100000), _this.input.value, new Date(Date.now()));
             _this.input.value = "";
         });
     };
@@ -31,7 +31,7 @@ var ToDoList = /** @class */ (function () {
             this.sectionElement.innerHTML = "";
             this.tasks.forEach(function (item) {
                 var div = document.createElement("div");
-                div.innerText = item.title;
+                div.innerText = item.title + " " + item.date.toDateString();
                 var button = document.createElement("button");
                 button.innerText = "Remove";
                 button.setAttribute("data-id", String(item.id));

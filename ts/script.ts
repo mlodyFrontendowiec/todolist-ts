@@ -1,7 +1,7 @@
 interface Task {
   id: number;
   title: string;
-  date: number;
+  date: Date;
 }
 class ToDoList {
   private sectionElement: HTMLElement;
@@ -15,7 +15,7 @@ class ToDoList {
     this.createTemplateInHTML();
     const buttons = document.querySelectorAll<HTMLElement>("button");
   }
-  addTask(id: number, title: string, date: number) {
+  addTask(id: number, title: string, date: Date) {
     this.tasks.push({ id, title, date });
     this.createTemplateInHTML();
   }
@@ -29,7 +29,7 @@ class ToDoList {
       this.addTask(
         Math.floor(Math.random() * 100000),
         this.input.value,
-        Date.now()
+        new Date(Date.now())
       );
       this.input.value = "";
     });
@@ -39,7 +39,7 @@ class ToDoList {
       this.sectionElement.innerHTML = "";
       this.tasks.forEach((item: Task): void => {
         const div: HTMLElement = document.createElement("div");
-        div.innerText = item.title;
+        div.innerText = `${item.title} ${item.date.toDateString()}`;
         const button: HTMLElement = document.createElement("button");
         button.innerText = "Remove";
         button.setAttribute("data-id", String(item.id));
