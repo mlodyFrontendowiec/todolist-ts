@@ -1,22 +1,38 @@
 interface Task {
   id: number;
   title: string;
-  date: Date;
+  date: number;
 }
 class ToDoList {
   private sectionElement: HTMLElement;
+  private form: HTMLFormElement;
+  private input: HTMLInputElement;
   constructor(private tasks: Task[]) {
     this.sectionElement = document.getElementById("todolist") as HTMLElement;
+    this.form = document.querySelector(".form-addTask") as HTMLFormElement;
+    this.input = document.querySelector(".input-addTask") as HTMLInputElement;
+    this.handleForm();
     this.createTemplateInHTML();
     const buttons = document.querySelectorAll<HTMLElement>("button");
   }
-  addTask(id: number, title: string, date: Date) {
+  addTask(id: number, title: string, date: number) {
     this.tasks.push({ id, title, date });
     this.createTemplateInHTML();
   }
   removeTask(id: number) {
     this.tasks = this.tasks.filter((item) => item.id !== id);
     this.createTemplateInHTML();
+  }
+  handleForm() {
+    this.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.addTask(
+        Math.floor(Math.random() * 100000),
+        this.input.value,
+        Date.now()
+      );
+      this.input.value = "";
+    });
   }
   createTemplateInHTML() {
     if (this.tasks.length > 0) {

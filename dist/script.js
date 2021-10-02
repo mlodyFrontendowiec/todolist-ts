@@ -3,6 +3,9 @@ var ToDoList = /** @class */ (function () {
     function ToDoList(tasks) {
         this.tasks = tasks;
         this.sectionElement = document.getElementById("todolist");
+        this.form = document.querySelector(".form-addTask");
+        this.input = document.querySelector(".input-addTask");
+        this.handleForm();
         this.createTemplateInHTML();
         var buttons = document.querySelectorAll("button");
     }
@@ -13,6 +16,14 @@ var ToDoList = /** @class */ (function () {
     ToDoList.prototype.removeTask = function (id) {
         this.tasks = this.tasks.filter(function (item) { return item.id !== id; });
         this.createTemplateInHTML();
+    };
+    ToDoList.prototype.handleForm = function () {
+        var _this = this;
+        this.form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            _this.addTask(Math.floor(Math.random() * 100000), _this.input.value, Date.now());
+            _this.input.value = "";
+        });
     };
     ToDoList.prototype.createTemplateInHTML = function () {
         var _this = this;
