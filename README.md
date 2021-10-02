@@ -1,1 +1,2 @@
-# Simple task using typescript
+# To Do List in Typescript
+Simple exercise in typescript.
